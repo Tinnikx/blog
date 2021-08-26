@@ -1,16 +1,20 @@
 package com.kaixiang.security.auth;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.MethodNotAllowedException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,8 +45,9 @@ public class StandardAuthenticationFilter extends AbstractAuthenticationProcessi
     }
 
     @Override public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("123"));
+        if (!request.getMethod().equals(HttpMethod.POST)) {
+            throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
+        }
         //        authentication.setAuthenticated(false);
 
         // test Authentication failure

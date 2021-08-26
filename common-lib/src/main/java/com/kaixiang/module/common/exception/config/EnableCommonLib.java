@@ -1,4 +1,4 @@
-package com.kaixiang.security.configuration;
+package com.kaixiang.module.common.exception.config;
 
 import org.springframework.context.annotation.Import;
 
@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Import(CustomSpringConfiguration.class)
-public @interface EnableSecurity {
+@Import(CommonLibConfiguration.class)
+public @interface EnableCommonLib {
 }
