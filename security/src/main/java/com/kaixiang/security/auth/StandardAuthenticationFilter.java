@@ -45,7 +45,7 @@ public class StandardAuthenticationFilter extends AbstractAuthenticationProcessi
     }
 
     @Override public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-        if (!request.getMethod().equals(HttpMethod.POST)) {
+        if (!request.getMethod().equals(HttpMethod.POST.toString())) {
             throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
         }
         //        authentication.setAuthenticated(false);
