@@ -1,6 +1,5 @@
 package com.kaixiang.security.auth.provider;
 
-import com.kaixiang.module.common.exception.UnAuthorizedException;
 import com.kaixiang.security.auth.StandardAuthenticationToken;
 import com.kaixiang.security.auth.dto.AuthenticatedUserDto;
 import com.kaixiang.security.auth.service.IdentityProviderLookupService;

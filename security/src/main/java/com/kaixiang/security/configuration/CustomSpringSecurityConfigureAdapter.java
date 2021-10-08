@@ -37,7 +37,7 @@ public class CustomSpringSecurityConfigureAdapter extends WebSecurityConfigurerA
     @Override protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             .and()
             .addFilterAfter(standardAuthenticationFilter, BasicAuthenticationFilter.class)
             .authorizeRequests().regexMatchers("/*").authenticated()

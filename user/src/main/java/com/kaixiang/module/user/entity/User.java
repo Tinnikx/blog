@@ -1,5 +1,7 @@
 package com.kaixiang.module.user.entity;
 
+import com.kaixiang.module.user.constants.Source;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.time.LocalDateTime;
@@ -16,7 +18,7 @@ public class User {
     private Long id;
 
     @Column
-    private String uuid;
+    private UUID uuid;
 
     @Column
     private String nickname;
@@ -40,7 +42,7 @@ public class User {
     private LocalDateTime last_login_at;
 
     @Column
-    private String source;
+    private Source source;
 
     public Long getId() {
         return id;
@@ -50,11 +52,11 @@ public class User {
         this.id = id;
     }
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -114,11 +116,11 @@ public class User {
         this.last_login_at = last_login_at;
     }
 
-    public String getSource() {
+    public Source getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(Source source) {
         this.source = source;
     }
 

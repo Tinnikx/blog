@@ -2,6 +2,7 @@ package com.kaixiang.module.user.auth;
 
 import com.kaixiang.module.common.exception.BadRequestException;
 import com.kaixiang.module.common.exception.UnAuthorizedException;
+import com.kaixiang.module.user.constants.Source;
 import com.kaixiang.module.user.converter.StandardUserIdentityProviderConverter;
 import com.kaixiang.module.user.dto.StandardUserRegisterDto;
 import com.kaixiang.module.user.entity.User;
@@ -42,18 +43,18 @@ public class StandardUserIdentityProvider implements UserIdentityProvider<Standa
 
     @PostConstruct
     public void init() {
-        identityProviderLookupService.registerIdentityProvider("standard", this);
+        identityProviderLookupService.registerIdentityProvider(Source.STANDARD.name(), this);
     }
 
     @Override public AuthenticatedUserDto authenticate(String email, String password) throws UnAuthorizedException {
         User user = userService.findByEmail(email);
-        if (!user.getActiveStatus()) {
-            throw new UnAuthorizedException("UnAuthorized");
-        }
+//        if (!user.getActiveStatus()) {
+//            throw new UnAuthorizedException("UnAuthorized");
+//        }
         if (!StringUtils.equals(user.getPassword(), password)) {
             throw new BadCredentialsException("invalid password");
         }
-        return new AuthenticatedUserDto(UUID.fromString(user.getUuid()),
+        return new AuthenticatedUserDto(user.getUuid(),
             user.getEmail(), user.getNickname(), user.getPassword(), new ArrayList<>(), true);
     }
 
@@ -70,9 +71,9 @@ public class StandardUserIdentityProvider implements UserIdentityProvider<Standa
         user.setNickname(registerModel.getNickname());
         user.setPassword(registerModel.getPassword());
         user.setActiveStatus(true);
-        user.setUuid(UUID.randomUUID().toString());
+        user.setUuid(UUID.randomUUID());
         user.setCreated_at(LocalDateTime.now());
-        user.setSource("standard");
+        user.setSource(Source.STANDARD);
         userService.create(user);
 
         permissionService.assignStandardPermissionToUser(user.getUuid());

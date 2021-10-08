@@ -22,9 +22,9 @@ public class PermissionService {
     private RoleService roleService;
 
     @Transactional
-    public void assignStandardPermissionToUser(String userUuid) {
+    public void assignStandardPermissionToUser(UUID userUuid) {
         Role role = roleService.findByRoleName(DEFAULT_ROLE);
-        assignPermissionToUser(userUuid, role);
+        assignPermissionToUser(userUuid.toString(), role);
     }
 
     @Transactional
