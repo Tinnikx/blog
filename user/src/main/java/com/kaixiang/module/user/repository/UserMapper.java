@@ -12,4 +12,6 @@ public interface UserMapper {
     User findByEmail(String email);
 
     void create(User user);
+
+    User findByUuid(String uuid);
 }

@@ -12,16 +12,16 @@ import com.kaixiang.module.user.service.UserService;
 import com.kaixiang.security.auth.converter.UserIdentityProviderConverter;
 import com.kaixiang.security.auth.dto.AuthenticatedUserDto;
 import com.kaixiang.security.auth.provider.UserIdentityProvider;
-import com.kaixiang.security.auth.service.IdentityProviderLookupService;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
@@ -48,14 +48,20 @@ public class StandardUserIdentityProvider implements UserIdentityProvider<Standa
 
     @Override public AuthenticatedUserDto authenticate(String email, String password) throws UnAuthorizedException {
         User user = userService.findByEmail(email);
+        //TODO
 //        if (!user.getActiveStatus()) {
 //            throw new UnAuthorizedException("UnAuthorized");
 //        }
         if (!StringUtils.equals(user.getPassword(), password)) {
             throw new BadCredentialsException("invalid password");
         }
+        String role = permissionService.findPermissions(user.getUuid());
+        if (StringUtils.isEmpty(role)) {
+            throw new UnAuthorizedException("UnAuthorized");
+        }
         return new AuthenticatedUserDto(user.getUuid(),
-            user.getEmail(), user.getNickname(), user.getPassword(), new ArrayList<>(), true);
+            user.getEmail(), user.getNickname(), user.getPassword(),
+            Collections.singletonList(new SimpleGrantedAuthority(role)), true);
     }
 
     @Transactional

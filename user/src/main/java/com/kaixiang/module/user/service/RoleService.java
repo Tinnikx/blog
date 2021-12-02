@@ -15,4 +15,8 @@ public class RoleService {
     public Role findByRoleName(String defaultRole) {
         return roleMapper.findByName(defaultRole);
     }
+
+    public Role findById(Integer id) {
+        return roleMapper.findById(id);
+    }
 }

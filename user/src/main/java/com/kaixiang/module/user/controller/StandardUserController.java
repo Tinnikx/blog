@@ -3,7 +3,7 @@ package com.kaixiang.module.user.controller;
 import com.kaixiang.module.common.exception.BadRequestException;
 import com.kaixiang.module.user.dto.StandardUserRegisterDto;
 import com.kaixiang.security.auth.provider.UserIdentityProvider;
-import com.kaixiang.security.auth.service.IdentityProviderLookupService;
+import com.kaixiang.module.user.auth.IdentityProviderLookupService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

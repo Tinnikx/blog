@@ -8,4 +8,8 @@
     <select id="findByName" resultType="com.kaixiang.module.user.entity.Role">
         SELECT * FROM role where name = #{name}
     </select>
+
+    <select id="findById" resultType="com.kaixiang.module.user.entity.Role">
+        SELECT * FROM role where id = #{id}
+    </select>
 </mapper>

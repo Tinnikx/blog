@@ -1,8 +1,8 @@
-package com.kaixiang.security.auth.provider;
+package com.kaixiang.module.user.auth;
 
 import com.kaixiang.security.auth.StandardAuthenticationToken;
 import com.kaixiang.security.auth.dto.AuthenticatedUserDto;
-import com.kaixiang.security.auth.service.IdentityProviderLookupService;
+import com.kaixiang.security.auth.provider.UserIdentityProvider;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;

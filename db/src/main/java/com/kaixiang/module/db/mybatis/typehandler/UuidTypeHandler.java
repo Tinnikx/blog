@@ -1,4 +1,4 @@
-package com.kaixiang.module.common.exception.mybatis.typehandler;
+package com.kaixiang.module.db.mybatis.typehandler;
 
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;

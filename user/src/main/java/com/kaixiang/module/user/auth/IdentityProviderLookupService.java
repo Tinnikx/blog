@@ -1,6 +1,6 @@
-package com.kaixiang.security.auth.service;
+package com.kaixiang.module.user.auth;
 
-import com.kaixiang.module.common.exception.RecordNotFoundException;
+import com.kaixiang.module.user.constants.Source;
 import com.kaixiang.security.auth.provider.UserIdentityProvider;
 
 import org.slf4j.Logger;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class IdentityProviderLookupService {
@@ -29,6 +30,6 @@ public class IdentityProviderLookupService {
         if (identityProvider == null) {
             LOGGER.warn("identity provider not found for source {}", source);
         }
-        return identityProvider;
+        return Optional.ofNullable(identityProvider).orElse(identityProviders.get(Source.STANDARD.name()));
     }
 }

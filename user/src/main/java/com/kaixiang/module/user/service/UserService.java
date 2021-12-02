@@ -17,6 +17,10 @@ public class UserService {
         return userMapper.findByEmail(email);
     }
 
+    public User findByUuid(String uuid) {
+        return userMapper.findByUuid(uuid);
+    }
+
     public Boolean checkEmailExist(String email) {
         return false;
     }

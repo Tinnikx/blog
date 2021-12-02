@@ -34,4 +34,11 @@ public class PermissionService {
         userRole.setRoleId(role.getId());
         userRoleMapper.create(userRole);
     }
+
+    @Transactional(readOnly = true)
+    public String findPermissions(UUID userUuid) {
+        UserRole userRole = userRoleMapper.findByUserUuid(userUuid);
+        Role role = roleService.findById(userRole.getRoleId());
+        return role.getName();
+    }
 }
