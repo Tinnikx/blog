@@ -7,6 +7,7 @@ import com.kaixiang.module.user.auth.IdentityProviderLookupService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class StandardUserController {
     public void signUp(@RequestBody StandardUserRegisterDto registerDto) throws BadRequestException {
         UserIdentityProvider identityProvider = identityProviderLookupService.lookup(registerDto.getSource());
         identityProvider.register(identityProvider.getConverter().convertToRegisterModel(registerDto));
+    }
+
+    @PutMapping("/upgrade")
+    public void upgrade() {
+
     }
 }

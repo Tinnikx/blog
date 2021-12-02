@@ -4,7 +4,7 @@ CREATE TABLE `user` (
      email varchar(100) NOT NULL unique,
      nickname varchar(100) NOT NULL unique,
      password varchar(100) NOT NULL,
-     active_status int default 0 not null,
+     active_status BOOL default true not null,
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL,
      last_login_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `request_permission` (
      status varchar(100) NOT NULL,
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
      updated_at TIMESTAMP DEFAULT NULL,
-     excutor varchar(100)
+     executor varchar(100)
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4

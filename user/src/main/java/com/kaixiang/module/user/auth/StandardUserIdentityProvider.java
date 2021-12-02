@@ -49,9 +49,9 @@ public class StandardUserIdentityProvider implements UserIdentityProvider<Standa
     @Override public AuthenticatedUserDto authenticate(String email, String password) throws UnAuthorizedException {
         User user = userService.findByEmail(email);
         //TODO
-//        if (!user.getActiveStatus()) {
-//            throw new UnAuthorizedException("UnAuthorized");
-//        }
+        if (!user.getActiveStatus()) {
+            throw new UnAuthorizedException("UnAuthorized");
+        }
         if (!StringUtils.equals(user.getPassword(), password)) {
             throw new BadCredentialsException("invalid password");
         }
