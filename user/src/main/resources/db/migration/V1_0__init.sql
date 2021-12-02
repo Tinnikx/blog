@@ -44,7 +44,8 @@ CREATE TABLE `request_permission` (
      status varchar(100) NOT NULL,
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
      updated_at TIMESTAMP DEFAULT NULL,
-     executor varchar(100)
+     reject_reason varchar(100) DEFAULT NULL,
+     executor_uuid varchar(100) DEFAULT NULL
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
