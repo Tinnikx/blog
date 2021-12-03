@@ -4,17 +4,22 @@ import com.kaixiang.security.auth.model.UserRegisterDto;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 public class StandardUserRegisterDto extends UserRegisterDto {
 
+    @Email
     @NotNull
     private String email;
 
+    @NotNull
     private String nickname;
 
+    @NotNull
     private String password;
 
+    @NotNull
     private String confirmedPassword;
 
     private String source;
