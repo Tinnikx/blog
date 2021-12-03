@@ -7,11 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 @Service
 public class UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RoleService roleService;
+
+    @Autowired
+    private RequestPermissionService requestPermissionService;
 
     public User findByEmail(String email) {
         return userMapper.findByEmail(email);
@@ -21,7 +29,14 @@ public class UserService {
         return userMapper.countByEmailOrNickName(email, nickName) != 0;
     }
 
-    public User findByUuid(String uuid) {
+    @Transactional
+    public void delAccount(UUID userUuid) {
+        roleService.deleteByUserUuid(userUuid);
+        requestPermissionService.deleteAllByUserUuid(userUuid);
+        userMapper.delete(userUuid);
+    }
+
+    public User findByUuid(UUID uuid) {
         return userMapper.findByUuid(uuid);
     }
 

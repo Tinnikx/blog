@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 /**
  * @Author kaixiang.tao
  * @Date 2021/12/2
@@ -26,5 +28,10 @@ public class RequestPermissionService {
         requestPermission.setReason(model.getReason());
         requestPermission.setStatus(UpgradeProcessStatus.Pending);
         requestPermissionMapper.create(requestPermission);
+    }
+
+    @Transactional
+    public void deleteAllByUserUuid(UUID userUuid) {
+        requestPermissionMapper.deleteAllByUserUuid(userUuid);
     }
 }

@@ -6,6 +6,8 @@ import com.kaixiang.module.user.repository.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class RoleService {
 
@@ -18,5 +20,9 @@ public class RoleService {
 
     public Role findById(Integer id) {
         return roleMapper.findById(id);
+    }
+
+    public void deleteByUserUuid(UUID userUuid) {
+        roleMapper.deleteByUserUuid(userUuid);
     }
 }

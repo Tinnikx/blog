@@ -4,6 +4,8 @@ import com.kaixiang.module.user.entity.User;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.UUID;
+
 @Mapper
 public interface UserMapper {
 
@@ -13,7 +15,9 @@ public interface UserMapper {
 
     void create(User user);
 
-    User findByUuid(String uuid);
+    User findByUuid(UUID uuid);
 
     Integer countByEmailOrNickName(String email, String nickName);
+
+    void delete(UUID uuid);
 }

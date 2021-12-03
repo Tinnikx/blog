@@ -5,4 +5,8 @@
         insert into request_permission(user_uuid, reason, status)
         values (#{userUuid}, #{reason}, #{status})
     </insert>
+
+    <delete id="deleteAllByUserUuid">
+        delete from request_permission where user_uuid = #{userUuid}
+    </delete>
 </mapper>

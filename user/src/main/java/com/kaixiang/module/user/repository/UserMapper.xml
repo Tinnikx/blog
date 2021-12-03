@@ -25,4 +25,8 @@
         SELECT count(id) FROM user where email = #{email} or nickname = #{nickName}
     </select>
 
+    <delete id="delete">
+        delete from user where user_uuid = #{uuid}
+    </delete>
+
 </mapper>
