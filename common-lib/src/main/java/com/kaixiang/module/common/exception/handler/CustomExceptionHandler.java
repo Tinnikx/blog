@@ -1,15 +1,22 @@
 package com.kaixiang.module.common.exception.handler;
 
+import static java.util.stream.Collectors.toMap;
+
 import com.kaixiang.module.common.exception.BadRequestException;
 import com.kaixiang.module.common.exception.ConflictException;
 import com.kaixiang.module.common.exception.RecordNotFoundException;
 import com.kaixiang.module.common.exception.UnAuthorizedException;
 
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.MethodNotAllowedException;
+
+import java.util.Map;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {
@@ -37,5 +44,12 @@ public class CustomExceptionHandler {
     @ExceptionHandler(ConflictException.class)
     public ResponseEntity<?> resolveConflictException(ConflictException ex) {
         return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> resolveMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        Map<String, Object> result = ex.getBindingResult().getAllErrors().stream()
+            .collect(toMap(error -> ((FieldError) error).getField(), DefaultMessageSourceResolvable::getDefaultMessage));
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 }

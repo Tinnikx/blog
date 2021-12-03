@@ -4,8 +4,11 @@ import com.kaixiang.security.auth.model.UserRegisterDto;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.validation.constraints.NotNull;
+
 public class StandardUserRegisterDto extends UserRegisterDto {
 
+    @NotNull
     private String email;
 
     private String nickname;

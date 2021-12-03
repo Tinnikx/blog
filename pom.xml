@@ -37,6 +37,8 @@
         <mybatis_version>3.5.7</mybatis_version>
         <mysql_connector_version>8.0.26</mysql_connector_version>
         <persistence_api_version>2.2</persistence_api_version>
+
+        <hibernate_validator>7.0.1.Final</hibernate_validator>
     </properties>
 
     <dependencyManagement>
@@ -184,6 +186,15 @@
                 <artifactId>log4j-slf4j-impl</artifactId>
                 <version>${log4j2_version}</version>
             </dependency>
+
+            <!-- param validator -->
+            <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate_validator}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>

@@ -12,6 +12,7 @@ import com.kaixiang.module.user.auth.IdentityProviderLookupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +28,7 @@ public class StandardUserController {
     private RequestPermissionService requestPermissionService;
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody StandardUserRegisterDto registerDto) throws BadRequestException, ConflictException {
+    public void signUp(@RequestBody @Validated StandardUserRegisterDto registerDto) throws BadRequestException, ConflictException {
         UserIdentityProvider identityProvider = identityProviderLookupService.lookup(registerDto.getSource());
         identityProvider.register(identityProvider.getConverter().convertToRegisterModel(registerDto));
     }
