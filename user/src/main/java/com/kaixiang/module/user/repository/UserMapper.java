@@ -14,4 +14,6 @@ public interface UserMapper {
     void create(User user);
 
     User findByUuid(String uuid);
+
+    Integer countByEmailOrNickName(String email, String nickName);
 }

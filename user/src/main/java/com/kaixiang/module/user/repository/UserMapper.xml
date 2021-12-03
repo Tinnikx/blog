@@ -21,4 +21,8 @@
         values (#{uuid}, #{email}, #{nickname}, #{password}, #{activeStatus}, #{source})
     </insert>
 
+    <select id="countByEmailOrNickName" resultType="java.lang.Integer">
+        SELECT count(id) FROM user where email = #{email} or nickname = #{nickName}
+    </select>
+
 </mapper>

@@ -46,6 +46,17 @@
             <artifactId>jackson-module-parameter-names</artifactId>
         </dependency>
 
+        <!-- 将spring security产生的认证信息存储到redis中 -->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
+        <!---->
+
         <dependency>
             <groupId>org.kaixiang</groupId>
             <artifactId>common-lib</artifactId>

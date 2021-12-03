@@ -1,6 +1,7 @@
 package com.kaixiang.security.auth.provider;
 
 import com.kaixiang.module.common.exception.BadRequestException;
+import com.kaixiang.module.common.exception.ConflictException;
 import com.kaixiang.module.common.exception.UnAuthorizedException;
 import com.kaixiang.security.auth.converter.UserIdentityProviderConverter;
 import com.kaixiang.security.auth.dto.AuthenticatedUserDto;
@@ -11,7 +12,7 @@ public interface UserIdentityProvider<T extends UserRegisterModel, Z extends Use
 
     AuthenticatedUserDto authenticate(String email, String password) throws UnAuthorizedException;
 
-    void register(T t) throws BadRequestException;
+    void register(T t) throws BadRequestException, ConflictException;
 
     UserIdentityProviderConverter<T, Z> getConverter();
 }

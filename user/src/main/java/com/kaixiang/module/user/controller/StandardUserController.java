@@ -1,6 +1,7 @@
 package com.kaixiang.module.user.controller;
 
 import com.kaixiang.module.common.exception.BadRequestException;
+import com.kaixiang.module.common.exception.ConflictException;
 import com.kaixiang.module.user.dto.StandardUserRegisterDto;
 import com.kaixiang.module.user.dto.UpgradePermissionDto;
 import com.kaixiang.module.user.model.RequestPermissionModel;
@@ -26,7 +27,7 @@ public class StandardUserController {
     private RequestPermissionService requestPermissionService;
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody StandardUserRegisterDto registerDto) throws BadRequestException {
+    public void signUp(@RequestBody StandardUserRegisterDto registerDto) throws BadRequestException, ConflictException {
         UserIdentityProvider identityProvider = identityProviderLookupService.lookup(registerDto.getSource());
         identityProvider.register(identityProvider.getConverter().convertToRegisterModel(registerDto));
     }

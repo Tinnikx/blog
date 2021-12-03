@@ -1,6 +1,7 @@
 package com.kaixiang.module.user.auth;
 
 import com.kaixiang.module.common.exception.BadRequestException;
+import com.kaixiang.module.common.exception.ConflictException;
 import com.kaixiang.module.common.exception.UnAuthorizedException;
 import com.kaixiang.module.user.constants.Source;
 import com.kaixiang.module.user.converter.StandardUserIdentityProviderConverter;
@@ -65,11 +66,11 @@ public class StandardUserIdentityProvider implements UserIdentityProvider<Standa
     }
 
     @Transactional
-    @Override public void register(StandardUserRegisterModel registerModel) throws BadRequestException {
-        boolean exist = userService.checkEmailExist(registerModel.getEmail()) ||
-            userService.checkNicknameExist(registerModel.getNickname());
-        if (exist) {
-            throw new BadRequestException();
+    @Override public void register(StandardUserRegisterModel registerModel) throws BadRequestException, ConflictException {
+//        boolean exist = userService.checkEmailExist(registerModel.getEmail()) ||
+//            userService.checkNicknameExist(registerModel.getNickname());
+        if (userService.checkIfExist(registerModel.getEmail(), registerModel.getNickname())) {
+            throw new ConflictException();
         }
 
         User user = new User();
