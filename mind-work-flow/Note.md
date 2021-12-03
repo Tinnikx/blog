@@ -14,3 +14,4 @@
 2. 使用 spring-security 进行权限验证及控制
 3. 使用 mybatis 连接操作数据库
 4. 使用 redis 作为缓存服务器存储数据以及与 spring-session 共同作用
+5. 使用 log4j2 作为日志记录并使用 ELK 技术栈作为分析记录工具

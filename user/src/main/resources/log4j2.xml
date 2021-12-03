@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="on" monitorInterval="1800">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] - %l - [%p] - %m%n"/>
+        </Console>
+        <!-- 将日志输出到外部文件中 -->
+        <RollingFile name="RollingFileInfo" fileName="/home/kaixiang/dev/workspace/log/resamania/info.log"
+                     filePattern="/home/kaixiang/dev/workspace/log/resamania/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <root level="info" includeLocation="true">
+            <appender-ref ref="Console"/>
+            <!--            <appender-ref ref="RollingFileInfo"/>-->
+        </root>
+    </Loggers>
+</Configuration>
