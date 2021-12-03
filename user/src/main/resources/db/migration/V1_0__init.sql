@@ -8,7 +8,7 @@ CREATE TABLE `user` (
      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL,
      last_login_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NULL,
-     source varchar(100) DEFAULT 'standard' not null
+     source varchar(100) DEFAULT 'STANDARD' not null
 )
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
@@ -23,9 +23,10 @@ ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into role(name) values ('ROLE_STANDARD');
+insert into role(name) values ('ROLE_SUPER');
 insert into role(name) values ('ROLE_ADMIN');
 insert into role(name) values ('ROLE_VIP');
+insert into role(name) values ('ROLE_STANDARD');
 
 
 CREATE TABLE `user_role` (

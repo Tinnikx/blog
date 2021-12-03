@@ -9,7 +9,7 @@ import org.springframework.security.authentication.ProviderManager;
 
 @Configuration
 @ComponentScan("com.kaixiang.security")
-public class CustomSpringConfiguration {
+public class CustomSpringSecurityConfiguration {
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationProvider... providers) {

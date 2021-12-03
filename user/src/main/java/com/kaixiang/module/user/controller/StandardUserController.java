@@ -2,12 +2,12 @@ package com.kaixiang.module.user.controller;
 
 import com.kaixiang.module.common.exception.BadRequestException;
 import com.kaixiang.module.common.exception.ConflictException;
+import com.kaixiang.module.user.auth.IdentityProviderLookupService;
 import com.kaixiang.module.user.dto.StandardUserRegisterDto;
 import com.kaixiang.module.user.dto.UpgradePermissionDto;
 import com.kaixiang.module.user.model.RequestPermissionModel;
 import com.kaixiang.module.user.service.RequestPermissionService;
 import com.kaixiang.security.auth.provider.UserIdentityProvider;
-import com.kaixiang.module.user.auth.IdentityProviderLookupService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

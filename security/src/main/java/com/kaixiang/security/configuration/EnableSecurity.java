@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Import(CustomSpringConfiguration.class)
+@Import(CustomSpringSecurityConfiguration.class)
 public @interface EnableSecurity {
 }

@@ -18,7 +18,7 @@ public class UserService {
     }
 
     public Boolean checkIfExist(String email, String nickName) {
-        return userMapper.countByEmailOrNickName(email, nickName) >= 0;
+        return userMapper.countByEmailOrNickName(email, nickName) != 0;
     }
 
     public User findByUuid(String uuid) {
