@@ -25,20 +25,20 @@
         <slf4j_version>1.7.32</slf4j_version>
         <springboot_version>2.3.4.RELEASE</springboot_version>
         <spring_version>5.2.8.RELEASE</spring_version>
-        <flyway_version>7.12.1</flyway_version>
+        <flyway_version>6.4.0</flyway_version>
         <commons_lang3_version>3.8.1</commons_lang3_version>
 
         <servlet_api_version>4.0.1</servlet_api_version>
 
         <lettuce_version>6.1.5.RELEASE</lettuce_version>
-        <spring_session_redis_version>2.6.0</spring_session_redis_version>
+        <spring_session_redis_version>2.3.0.RELEASE</spring_session_redis_version>
 
         <mybatis_spring_version>2.0.6</mybatis_spring_version>
         <mybatis_version>3.5.7</mybatis_version>
         <mysql_connector_version>8.0.26</mysql_connector_version>
         <persistence_api_version>2.2</persistence_api_version>
 
-        <hibernate_validator>7.0.1.Final</hibernate_validator>
+        <hibernate_validator>6.1.0.Final</hibernate_validator>
     </properties>
 
     <dependencyManagement>
@@ -120,6 +120,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring_version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons_lang3_version}</version>
@@ -195,6 +201,17 @@
                 <version>${hibernate_validator}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${springboot_version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot_version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

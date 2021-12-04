@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.MethodNotAllowedException;
 
+import java.util.Collections;
 import java.util.Map;
 
 @RestControllerAdvice
@@ -51,5 +52,11 @@ public class CustomExceptionHandler {
         Map<String, Object> result = ex.getBindingResult().getAllErrors().stream()
             .collect(toMap(error -> ((FieldError) error).getField(), DefaultMessageSourceResolvable::getDefaultMessage));
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> resolveOthersException(Exception ex) {
+        return new ResponseEntity<>(Collections.singletonMap("message", "Unexpected result, please check!"),
+            HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

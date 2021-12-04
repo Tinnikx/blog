@@ -1,12 +1,10 @@
 package com.kaixiang.security.configuration;
 
 import com.kaixiang.security.auth.StandardAuthenticationFilter;
-import com.kaixiang.security.auth.StandardAuthenticationPermissionEvaluator;
 import com.kaixiang.security.auth.WebServiceAuthenticationEntryPoint;
 import com.kaixiang.security.auth.WebServiceLogoutSuccessHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,9 +19,6 @@ public class CustomSpringSecurityConfigureAdapter extends WebSecurityConfigurerA
 
     @Autowired
     private DefaultWebSecurityExpressionHandler expressionHandler;
-
-    @Autowired
-    private StandardAuthenticationPermissionEvaluator standardAuthenticationPermissionEvaluator;
 
     @Autowired
     private StandardAuthenticationFilter standardAuthenticationFilter;
@@ -48,12 +43,5 @@ public class CustomSpringSecurityConfigureAdapter extends WebSecurityConfigurerA
             .authenticationEntryPoint(webServiceAuthenticationEntryPoint)
             .and()
             .logout().logoutSuccessHandler(webServiceLogoutSuccessHandler);
-    }
-
-    @Bean
-    public DefaultWebSecurityExpressionHandler expressionHandler() {
-        DefaultWebSecurityExpressionHandler expressionHandler = new DefaultWebSecurityExpressionHandler();
-        expressionHandler.setPermissionEvaluator(standardAuthenticationPermissionEvaluator);
-        return expressionHandler;
     }
 }

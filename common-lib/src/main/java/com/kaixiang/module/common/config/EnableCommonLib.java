@@ -1,4 +1,4 @@
-package com.kaixiang.module.common.exception.config;
+package com.kaixiang.module.common.config;
 
 import org.springframework.context.annotation.Import;
 
