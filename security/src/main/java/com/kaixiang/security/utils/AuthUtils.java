@@ -16,8 +16,10 @@ public class AuthUtils {
 
     public static AuthenticatedUserDto getCurrentUser() throws RecordNotFoundException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (AuthenticatedUserDto) Optional.ofNullable(authentication)
-            .filter(auth -> auth instanceof AuthenticatedUserDto)
+        return Optional.ofNullable(authentication)
+            .map(Authentication::getPrincipal)
+            .filter(principal -> principal instanceof AuthenticatedUserDto)
+            .map(principal -> (AuthenticatedUserDto) principal)
             .orElseThrow(() -> new RecordNotFoundException("current user not found"));
     }
 }

@@ -8,4 +8,8 @@
     <insert id="create" parameterType="com.kaixiang.module.user.entity.UserRole">
         insert into user_role(user_uuid, role_id) values (#{userUuid}, #{roleId})
     </insert>
+
+    <delete id="deleteByUserUuid">
+        delete from user_role where user_uuid = #{userUuid}
+    </delete>
 </mapper>

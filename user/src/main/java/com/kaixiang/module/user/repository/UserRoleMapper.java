@@ -12,4 +12,6 @@ public interface UserRoleMapper {
     UserRole findByUserUuid(UUID userUuid);
 
     void create(UserRole userRole);
+
+    void deleteByUserUuid(UUID userUuid);
 }

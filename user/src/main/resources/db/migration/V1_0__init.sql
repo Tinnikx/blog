@@ -51,3 +51,14 @@ CREATE TABLE `request_permission` (
 ENGINE=InnoDB
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- CREATE TABLE events (
+--      id BIGINT auto_increment PRIMARY,
+--      name varchar(100) NOT NULL,
+--      created_at varchar(100) DEFAULT CURRENT_TIMESTAMP NOT NULL,
+--      identify_id varchar(100) NOT NULL
+-- )
+--     ENGINE=InnoDB
+-- DEFAULT CHARSET=utf8
+-- COLLATE=utf8_general_ci;

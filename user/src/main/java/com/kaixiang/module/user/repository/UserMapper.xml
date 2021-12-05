@@ -26,7 +26,7 @@
     </select>
 
     <delete id="delete">
-        delete from user where user_uuid = #{uuid}
+        delete from user where uuid = #{uuid}
     </delete>
 
 </mapper>

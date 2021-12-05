@@ -14,6 +14,4 @@ public interface RoleMapper {
     Role findByName(String name);
 
     Role findById(Integer id);
-
-    void deleteByUserUuid(UUID userUuid);
 }

@@ -12,8 +12,4 @@
     <select id="findById" resultType="com.kaixiang.module.user.entity.Role">
         SELECT * FROM role where id = #{id}
     </select>
-
-    <delete id="deleteByUserUuid">
-        delete from role where user_uuid = #{userUuid}
-    </delete>
 </mapper>

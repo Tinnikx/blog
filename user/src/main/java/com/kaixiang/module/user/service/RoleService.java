@@ -21,8 +21,4 @@ public class RoleService {
     public Role findById(Integer id) {
         return roleMapper.findById(id);
     }
-
-    public void deleteByUserUuid(UUID userUuid) {
-        roleMapper.deleteByUserUuid(userUuid);
-    }
 }

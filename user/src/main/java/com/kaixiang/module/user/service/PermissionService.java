@@ -41,4 +41,9 @@ public class PermissionService {
         Role role = roleService.findById(userRole.getRoleId());
         return role.getName();
     }
+
+    @Transactional
+    public void deleteByUserUuid(UUID userUuid) {
+        userRoleMapper.deleteByUserUuid(userUuid);
+    }
 }

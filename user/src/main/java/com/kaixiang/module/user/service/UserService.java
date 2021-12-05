@@ -16,7 +16,7 @@ public class UserService {
     private UserMapper userMapper;
 
     @Autowired
-    private RoleService roleService;
+    private PermissionService permissionService;
 
     @Autowired
     private RequestPermissionService requestPermissionService;
@@ -31,7 +31,7 @@ public class UserService {
 
     @Transactional
     public void delAccount(UUID userUuid) {
-        roleService.deleteByUserUuid(userUuid);
+        permissionService.deleteByUserUuid(userUuid);
         requestPermissionService.deleteAllByUserUuid(userUuid);
         userMapper.delete(userUuid);
     }
