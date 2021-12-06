@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kaixiang.module.user.repository.UserRoleMapper">
+    <select id="findByUserUuid" resultType="com.kaixiang.module.user.repository.entity.UserRole">
+        SELECT * FROM user_role where user_uuid = #{userUuid}
+    </select>
+
+    <insert id="create" parameterType="com.kaixiang.module.user.repository.entity.UserRole">
+        insert into user_role(user_uuid, role_id) values (#{userUuid}, #{roleId})
+    </insert>
+
+    <delete id="deleteByUserUuid">
+        delete from user_role where user_uuid = #{userUuid}
+    </delete>
+</mapper>

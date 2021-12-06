@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kaixiang.module.user.repository.UserMapper">
+
+    <resultMap id="UserMap" type="com.kaixiang.module.user.repository.entity.User">
+        <id column="id" javaType="java.lang.Integer"/>
+    </resultMap>
+
+    <select id="find" resultType="com.kaixiang.module.user.repository.entity.User">
+        SELECT * FROM user where id = #{id}
+    </select>
+    <select id="findByEmail" resultType="com.kaixiang.module.user.repository.entity.User">
+        SELECT * FROM user where email = #{email}
+    </select>
+    <select id="findByUuid" resultType="com.kaixiang.module.user.repository.entity.User">
+        SELECT * FROM user where uuid = #{uuid}
+    </select>
+
+    <insert id="create" parameterType="com.kaixiang.module.user.repository.entity.User">
+        insert into user(uuid, email, nickname, password, active_status, source)
+        values (#{uuid}, #{email}, #{nickname}, #{password}, #{activeStatus}, #{source})
+    </insert>
+
+    <select id="countByEmailOrNickName" resultType="java.lang.Integer">
+        SELECT count(id) FROM user where email = #{email} or nickname = #{nickName}
+    </select>
+
+    <delete id="delete">
+        delete from user where uuid = #{uuid}
+    </delete>
+
+    <update id="update">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="activeStatus != null">
+                active_status = #{activeStatus},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+            <if test="lastLoginAt != null">
+                last_login_at = #{lastLoginAt},
+            </if>
+        </trim>
+        where uuid = #{uuid}
+    </update>
+
+</mapper>
