@@ -139,7 +139,7 @@
 
             <!-- spring session与redis的整合 -->
             <!-- https://docs.spring.io/spring-session/docs/2.3.3.RELEASE/reference/html5/#httpsession-redis -->
-            <!-- 注意 当使用了这种方式时 api接口返回的Cookie中就不再会是JSESSIONID而是使用SESSION来作为寻找redis中存储的数据 -->
+            <!-- 注意 当使用了这种方式时 api接口返回的Cookie中就不再会是JSESSIONID而是使用SESSION来作为凭据寻找redis中存储的数据 -->
             <dependency>
                 <groupId>org.springframework.session</groupId>
                 <artifactId>spring-session-data-redis</artifactId>
