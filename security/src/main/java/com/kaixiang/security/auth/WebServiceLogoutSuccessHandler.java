@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 public class WebServiceLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        System.out.println("logout");
         response.setStatus(HttpStatus.OK.value());
         response.getWriter().flush();
     }
