@@ -6,10 +6,10 @@ import com.kaixiang.module.common.exception.RecordNotFoundException;
 import com.kaixiang.module.common.exception.UnAuthorizedException;
 import com.kaixiang.module.user.converter.UserIdentityProviderConverter;
 import com.kaixiang.security.auth.dto.AuthenticatedUserDto;
-import com.kaixiang.security.auth.dto.UpdateProfileDto;
-import com.kaixiang.security.auth.dto.UserRegisterDto;
-import com.kaixiang.security.auth.model.UpdateProfileModel;
-import com.kaixiang.security.auth.model.UserRegisterModel;
+import com.kaixiang.module.user.dto.UpdateProfileDto;
+import com.kaixiang.module.user.dto.UserRegisterDto;
+import com.kaixiang.module.user.model.UpdateProfileModel;
+import com.kaixiang.module.user.model.UserRegisterModel;
 
 public interface UserIdentityProvider<T extends UserRegisterModel, Z extends UserRegisterDto,
     J extends UpdateProfileDto, X extends UpdateProfileModel> {

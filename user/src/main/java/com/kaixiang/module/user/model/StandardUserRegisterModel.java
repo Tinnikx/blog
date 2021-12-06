@@ -1,7 +1,5 @@
 package com.kaixiang.module.user.model;
 
-import com.kaixiang.security.auth.model.UserRegisterModel;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class StandardUserRegisterModel extends UserRegisterModel {

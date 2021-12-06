@@ -1,7 +1,5 @@
 package com.kaixiang.module.user.model;
 
-import com.kaixiang.security.auth.model.UpdateProfileModel;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.UUID;

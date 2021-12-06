@@ -1,4 +1,4 @@
-package com.kaixiang.security.auth.model;
+package com.kaixiang.module.user.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

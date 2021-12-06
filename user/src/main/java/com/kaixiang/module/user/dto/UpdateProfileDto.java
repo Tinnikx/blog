@@ -1,4 +1,4 @@
-package com.kaixiang.security.auth.dto;
+package com.kaixiang.module.user.dto;
 
 /**
  * @Author kaixiang.tao

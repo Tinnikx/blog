@@ -1,7 +1,5 @@
 package com.kaixiang.module.user.dto;
 
-import com.kaixiang.security.auth.dto.UpdateProfileDto;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.UUID;
