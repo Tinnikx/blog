@@ -3,6 +3,7 @@ package com.kaixiang.module.user.repository;
 import com.kaixiang.module.user.entity.User;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.UUID;
 
@@ -17,7 +18,10 @@ public interface UserMapper {
 
     User findByUuid(UUID uuid);
 
-    Integer countByEmailOrNickName(String email, String nickName);
+    Integer countByEmailOrNickName(@Param("email") String email, @Param("nickName") String nickName);
 
     void delete(UUID uuid);
+
+    void update(User user);
+
 }

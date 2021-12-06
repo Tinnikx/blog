@@ -29,4 +29,29 @@
         delete from user where uuid = #{uuid}
     </delete>
 
+    <update id="update">
+        update user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="activeStatus != null">
+                active_status = #{activeStatus},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt},
+            </if>
+            <if test="lastLoginAt != null">
+                last_login_at = #{lastLoginAt},
+            </if>
+        </trim>
+        where uuid = #{uuid}
+    </update>
+
 </mapper>

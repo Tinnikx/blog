@@ -4,12 +4,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @Author kaixiang.tao
  * @Date 2021/12/2
  */
 public class UpgradePermissionDto {
 
+    @NotNull
     private UUID uuid;
 
     private String reason;

@@ -1,28 +1,50 @@
 package com.kaixiang.module.user.dto;
 
-import com.kaixiang.security.auth.dto.UserRegisterDto;
+import com.kaixiang.security.auth.dto.UpdateProfileDto;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.UUID;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-public class StandardUserRegisterDto extends UserRegisterDto {
-
-    @Email
-    @NotNull
-    private String email;
-
-    @NotNull
-    private String nickname;
-
-    @NotNull
-    private String password;
-
-    @NotNull
-    private String confirmedPassword;
+/**
+ * @Author kaixiang.tao
+ * @Date 2021/12/6
+ */
+public class StandardUpdateProfileDto extends UpdateProfileDto {
 
     private String source;
+
+    @NotNull
+    private UUID userUuid;
+
+    @Email
+    private String email;
+
+    private String nickname;
+
+    //TODO verify the password and confirmed password is the same
+    private String password;
+
+    private String confirmedPassword;
+
+    public UUID getUserUuid() {
+        return userUuid;
+    }
+
+    public void setUserUuid(UUID userUuid) {
+        this.userUuid = userUuid;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
 
     public String getEmail() {
         return email;
@@ -56,21 +78,14 @@ public class StandardUserRegisterDto extends UserRegisterDto {
         this.confirmedPassword = confirmedPassword;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     @Override public String toString() {
         return new ToStringBuilder(this)
+            .append("source", source)
+            .append("userUuid", userUuid)
             .append("email", email)
             .append("nickname", nickname)
             .append("password", password)
             .append("confirmedPassword", confirmedPassword)
-            .append("source", source)
             .toString();
     }
 }

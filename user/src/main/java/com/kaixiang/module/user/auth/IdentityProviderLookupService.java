@@ -1,7 +1,6 @@
 package com.kaixiang.module.user.auth;
 
 import com.kaixiang.module.user.constants.Source;
-import com.kaixiang.security.auth.provider.UserIdentityProvider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

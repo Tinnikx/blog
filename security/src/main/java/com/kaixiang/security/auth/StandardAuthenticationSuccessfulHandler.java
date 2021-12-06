@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kaixiang.security.utils.AuthUtils;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,7 @@ public class StandardAuthenticationSuccessfulHandler implements AuthenticationSu
         //认证成功之后, 直接返回 response
         try (JsonGenerator jsonGenerator = new JsonFactory().createGenerator(response.getOutputStream(), JsonEncoding.UTF8)){
             response.setHeader("Content-Type", "application/json");
-            new ObjectMapper().writeValue(jsonGenerator, Collections.singletonMap("message", "Authorized Access"));
+            new ObjectMapper().writeValue(jsonGenerator, Collections.singletonMap("uuid", AuthUtils.getCurrentUser().getUuid()));
         } catch (Exception e) {
             throw new IOException(e.getMessage(), e.getCause());
         }

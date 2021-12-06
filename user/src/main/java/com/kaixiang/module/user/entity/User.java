@@ -33,13 +33,13 @@ public class User {
     private Boolean activeStatus;
 
     @Column
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @Column
-    private LocalDateTime last_login_at;
+    private LocalDateTime lastLoginAt;
 
     @Column
     private Source source;
@@ -92,28 +92,28 @@ public class User {
         this.activeStatus = activeStatus;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime created_at) {
+        this.createdAt = created_at;
     }
 
-    public LocalDateTime getUpdated_at() {
-        return updated_at;
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDateTime updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDateTime updated_at) {
+        this.updatedAt = updated_at;
     }
 
-    public LocalDateTime getLast_login_at() {
-        return last_login_at;
+    public LocalDateTime getLastLoginAt() {
+        return lastLoginAt;
     }
 
-    public void setLast_login_at(LocalDateTime last_login_at) {
-        this.last_login_at = last_login_at;
+    public void setLastLoginAt(LocalDateTime last_login_at) {
+        this.lastLoginAt = last_login_at;
     }
 
     public Source getSource() {
@@ -132,9 +132,9 @@ public class User {
             .append("email", email)
             .append("password", password)
             .append("activeStatus", activeStatus)
-            .append("created_at", created_at)
-            .append("updated_at", updated_at)
-            .append("last_login_at", last_login_at)
+            .append("created_at", createdAt)
+            .append("updated_at", updatedAt)
+            .append("last_login_at", lastLoginAt)
             .append("source", source)
             .toString();
     }

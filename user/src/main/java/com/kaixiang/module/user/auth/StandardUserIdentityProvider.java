@@ -2,17 +2,19 @@ package com.kaixiang.module.user.auth;
 
 import com.kaixiang.module.common.exception.BadRequestException;
 import com.kaixiang.module.common.exception.ConflictException;
+import com.kaixiang.module.common.exception.RecordNotFoundException;
 import com.kaixiang.module.common.exception.UnAuthorizedException;
 import com.kaixiang.module.user.constants.Source;
 import com.kaixiang.module.user.converter.StandardUserIdentityProviderConverter;
+import com.kaixiang.module.user.dto.StandardUpdateProfileDto;
 import com.kaixiang.module.user.dto.StandardUserRegisterDto;
 import com.kaixiang.module.user.entity.User;
+import com.kaixiang.module.user.model.StandardUpdateProfileModel;
 import com.kaixiang.module.user.model.StandardUserRegisterModel;
 import com.kaixiang.module.user.service.PermissionService;
 import com.kaixiang.module.user.service.UserService;
-import com.kaixiang.security.auth.converter.UserIdentityProviderConverter;
+import com.kaixiang.module.user.converter.UserIdentityProviderConverter;
 import com.kaixiang.security.auth.dto.AuthenticatedUserDto;
-import com.kaixiang.security.auth.provider.UserIdentityProvider;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,9 @@ import java.util.UUID;
 import javax.annotation.PostConstruct;
 
 @Service
-public class StandardUserIdentityProvider implements UserIdentityProvider<StandardUserRegisterModel, StandardUserRegisterDto> {
+public class StandardUserIdentityProvider
+    implements UserIdentityProvider<StandardUserRegisterModel, StandardUserRegisterDto,
+    StandardUpdateProfileDto, StandardUpdateProfileModel> {
 
     @Autowired
     private IdentityProviderLookupService identityProviderLookupService;
@@ -51,7 +55,7 @@ public class StandardUserIdentityProvider implements UserIdentityProvider<Standa
         User user = userService.findByEmail(email);
         //TODO
         if (!user.getActiveStatus()) {
-            throw new UnAuthorizedException("UnAuthorized");
+            throw new UnAuthorizedException("Inactive");
         }
         if (!StringUtils.equals(user.getPassword(), password)) {
             throw new BadCredentialsException("invalid password");
@@ -60,6 +64,8 @@ public class StandardUserIdentityProvider implements UserIdentityProvider<Standa
         if (StringUtils.isEmpty(role)) {
             throw new UnAuthorizedException("UnAuthorized");
         }
+        user.setLastLoginAt(LocalDateTime.now());
+        userService.update(user);
         return new AuthenticatedUserDto(user.getUuid(),
             user.getEmail(), user.getNickname(), user.getPassword(),
             Collections.singletonList(new SimpleGrantedAuthority(role)), true);
@@ -79,14 +85,36 @@ public class StandardUserIdentityProvider implements UserIdentityProvider<Standa
         user.setPassword(registerModel.getPassword());
         user.setActiveStatus(true);
         user.setUuid(UUID.randomUUID());
-        user.setCreated_at(LocalDateTime.now());
+        user.setCreatedAt(LocalDateTime.now());
         user.setSource(Source.STANDARD);
         userService.create(user);
 
         permissionService.assignStandardPermissionToUser(user.getUuid());
     }
 
-    @Override public UserIdentityProviderConverter<StandardUserRegisterModel, StandardUserRegisterDto> getConverter() {
+    @Override public UserIdentityProviderConverter<StandardUserRegisterModel,
+        StandardUserRegisterDto, StandardUpdateProfileDto, StandardUpdateProfileModel> getConverter() {
         return standardUserIdentityProviderConverter;
+    }
+
+    @Override public void updateProfile(StandardUpdateProfileModel updateProfileModel)
+        throws ConflictException, RecordNotFoundException {
+        String email = updateProfileModel.getEmail();
+        String nickname = updateProfileModel.getNickname();
+        if (userService.checkIfExist(email, nickname)) {
+            throw new ConflictException();
+        }
+        UUID userUuid = updateProfileModel.getUserUuid();
+        Boolean userExist = userService.checkUserExistByUuid(userUuid);
+        if (!userExist) {
+            throw new RecordNotFoundException("user not found");
+        }
+        User user = new User();
+        user.setUuid(userUuid);
+        user.setEmail(email);
+        user.setNickname(nickname);
+        user.setPassword(updateProfileModel.getPassword());
+        user.setUpdatedAt(LocalDateTime.now());
+        userService.update(user);
     }
 }

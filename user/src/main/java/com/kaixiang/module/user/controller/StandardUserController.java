@@ -10,14 +10,17 @@ import com.kaixiang.module.common.exception.BadRequestException;
 import com.kaixiang.module.common.exception.ConflictException;
 import com.kaixiang.module.common.exception.RecordNotFoundException;
 import com.kaixiang.module.user.auth.IdentityProviderLookupService;
+import com.kaixiang.module.user.dto.GetUserProfileResponseDto;
 import com.kaixiang.module.user.dto.StandardUserRegisterDto;
+import com.kaixiang.module.user.dto.StandardUpdateProfileDto;
 import com.kaixiang.module.user.dto.UpgradePermissionDto;
+import com.kaixiang.module.user.entity.User;
 import com.kaixiang.module.user.model.DelAccountRequestModel;
 import com.kaixiang.module.user.model.RequestPermissionModel;
 import com.kaixiang.module.user.service.RequestPermissionService;
 import com.kaixiang.module.user.service.UserService;
 import com.kaixiang.security.auth.dto.AuthenticatedUserDto;
-import com.kaixiang.security.auth.provider.UserIdentityProvider;
+import com.kaixiang.module.user.auth.UserIdentityProvider;
 import com.kaixiang.security.utils.AuthUtils;
 import com.kaixiang.security.utils.BlogUrlGenerator;
 
@@ -32,9 +35,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URLEncoder;
@@ -46,6 +51,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 @RestController
+@RequestMapping("/user")
 public class StandardUserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(StandardUserController.class);
@@ -77,10 +83,33 @@ public class StandardUserController {
         identityProvider.register(identityProvider.getConverter().convertToRegisterModel(registerDto));
     }
 
+    @PutMapping("/profile/update")
+    @PreAuthorize("hasAnyRole('STANDARD', 'VIP', 'SUPER', 'ADMIN')")
+    public void updateProfile(@RequestBody @Validated StandardUpdateProfileDto standardUpdateProfileDto) throws ConflictException, RecordNotFoundException {
+        UserIdentityProvider identityProvider = identityProviderLookupService.lookup(standardUpdateProfileDto.getSource());
+        identityProvider.updateProfile(identityProvider.getConverter().convertToUpdateProfileModel(standardUpdateProfileDto));
+    }
+
+    @GetMapping("/profile/get")
+    @PreAuthorize("hasAnyRole('STANDARD', 'VIP', 'SUPER', 'ADMIN')")
+    public ResponseEntity<GetUserProfileResponseDto> getProfile() throws RecordNotFoundException {
+        User user = userService.findByUuid(AuthUtils.getCurrentUser().getUuid());
+        GetUserProfileResponseDto responseDto = new GetUserProfileResponseDto();
+        responseDto.setUuid(user.getUuid());
+        responseDto.setEmail(user.getEmail());
+        responseDto.setNickname(user.getNickname());
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
+    @PutMapping("/reset-password")
+    public void resetPassword() {
+        //TODO send email to user to reset password
+    }
+
     @PutMapping("/upgrade")
     @PreAuthorize("hasAnyRole('STANDARD')")
     @Transactional
-    public void upgrade(@RequestBody UpgradePermissionDto upgradePermissionDto) {
+    public void upgrade(@RequestBody @Validated UpgradePermissionDto upgradePermissionDto) {
         //TODO maybe need message queue
         RequestPermissionModel requestPermissionModel = new RequestPermissionModel();
         requestPermissionModel.setReason(upgradePermissionDto.getReason());
