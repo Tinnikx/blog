@@ -1,12 +1,10 @@
 package com.kaixiang.module.user.service;
 
-import com.kaixiang.module.user.entity.Role;
+import com.kaixiang.module.user.repository.entity.Role;
 import com.kaixiang.module.user.repository.RoleMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
 
 @Service
 public class RoleService {

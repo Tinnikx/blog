@@ -1,6 +1,6 @@
 package com.kaixiang.module.user.service;
 
-import com.kaixiang.module.user.entity.RequestPermission;
+import com.kaixiang.module.user.repository.entity.RequestPermission;
 import com.kaixiang.module.user.model.RequestPermissionModel;
 import com.kaixiang.module.user.repository.RequestPermissionMapper;
 import com.kaixiang.module.user.upgrade.UpgradeProcessStatus;

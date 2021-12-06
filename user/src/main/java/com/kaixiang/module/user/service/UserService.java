@@ -1,7 +1,7 @@
 package com.kaixiang.module.user.service;
 
 import com.kaixiang.module.common.exception.RecordNotFoundException;
-import com.kaixiang.module.user.entity.User;
+import com.kaixiang.module.user.repository.entity.User;
 import com.kaixiang.module.user.repository.UserMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;

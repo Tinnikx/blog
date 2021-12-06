@@ -2,21 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.kaixiang.module.user.repository.UserMapper">
 
-    <resultMap id="UserMap" type="com.kaixiang.module.user.entity.User">
+    <resultMap id="UserMap" type="com.kaixiang.module.user.repository.entity.User">
         <id column="id" javaType="java.lang.Integer"/>
     </resultMap>
 
-    <select id="find" resultType="com.kaixiang.module.user.entity.User">
+    <select id="find" resultType="com.kaixiang.module.user.repository.entity.User">
         SELECT * FROM user where id = #{id}
     </select>
-    <select id="findByEmail" resultType="com.kaixiang.module.user.entity.User">
+    <select id="findByEmail" resultType="com.kaixiang.module.user.repository.entity.User">
         SELECT * FROM user where email = #{email}
     </select>
-    <select id="findByUuid" resultType="com.kaixiang.module.user.entity.User">
+    <select id="findByUuid" resultType="com.kaixiang.module.user.repository.entity.User">
         SELECT * FROM user where uuid = #{uuid}
     </select>
 
-    <insert id="create" parameterType="com.kaixiang.module.user.entity.User">
+    <insert id="create" parameterType="com.kaixiang.module.user.repository.entity.User">
         insert into user(uuid, email, nickname, password, active_status, source)
         values (#{uuid}, #{email}, #{nickname}, #{password}, #{activeStatus}, #{source})
     </insert>

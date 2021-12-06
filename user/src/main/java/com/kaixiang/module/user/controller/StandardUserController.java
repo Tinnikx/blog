@@ -14,7 +14,7 @@ import com.kaixiang.module.user.dto.GetUserProfileResponseDto;
 import com.kaixiang.module.user.dto.StandardUserRegisterDto;
 import com.kaixiang.module.user.dto.StandardUpdateProfileDto;
 import com.kaixiang.module.user.dto.UpgradePermissionDto;
-import com.kaixiang.module.user.entity.User;
+import com.kaixiang.module.user.repository.entity.User;
 import com.kaixiang.module.user.model.DelAccountRequestModel;
 import com.kaixiang.module.user.model.RequestPermissionModel;
 import com.kaixiang.module.user.service.RequestPermissionService;

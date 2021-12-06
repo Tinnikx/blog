@@ -8,7 +8,7 @@ import com.kaixiang.module.user.constants.Source;
 import com.kaixiang.module.user.converter.StandardUserIdentityProviderConverter;
 import com.kaixiang.module.user.dto.StandardUpdateProfileDto;
 import com.kaixiang.module.user.dto.StandardUserRegisterDto;
-import com.kaixiang.module.user.entity.User;
+import com.kaixiang.module.user.repository.entity.User;
 import com.kaixiang.module.user.model.StandardUpdateProfileModel;
 import com.kaixiang.module.user.model.StandardUserRegisterModel;
 import com.kaixiang.module.user.service.PermissionService;

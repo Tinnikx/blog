@@ -1,7 +1,7 @@
 package com.kaixiang.module.user.service;
 
-import com.kaixiang.module.user.entity.Role;
-import com.kaixiang.module.user.entity.UserRole;
+import com.kaixiang.module.user.repository.entity.Role;
+import com.kaixiang.module.user.repository.entity.UserRole;
 import com.kaixiang.module.user.repository.UserRoleMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;

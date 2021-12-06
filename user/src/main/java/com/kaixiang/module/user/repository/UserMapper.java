@@ -1,6 +1,6 @@
 package com.kaixiang.module.user.repository;
 
-import com.kaixiang.module.user.entity.User;
+import com.kaixiang.module.user.repository.entity.User;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

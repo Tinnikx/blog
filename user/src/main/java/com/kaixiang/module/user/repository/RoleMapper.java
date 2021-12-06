@@ -1,10 +1,8 @@
 package com.kaixiang.module.user.repository;
 
-import com.kaixiang.module.user.entity.Role;
+import com.kaixiang.module.user.repository.entity.Role;
 
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.UUID;
 
 @Mapper
 public interface RoleMapper {

@@ -1,6 +1,6 @@
 package com.kaixiang.module.user.repository;
 
-import com.kaixiang.module.user.entity.RequestPermission;
+import com.kaixiang.module.user.repository.entity.RequestPermission;
 
 import org.apache.ibatis.annotations.Mapper;
 

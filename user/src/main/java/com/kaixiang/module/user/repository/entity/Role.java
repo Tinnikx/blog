@@ -1,4 +1,4 @@
-package com.kaixiang.module.user.entity;
+package com.kaixiang.module.user.repository.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
